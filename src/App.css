@@ -5,27 +5,14 @@
     grid-template-areas:
     'h h'
     'n c';
-    grid-template-rows:60px 1fr ;
+    grid-template-rows:60px 1fr;
     grid-template-columns: 2fr 10fr;
 
 }
 
-.header {
-    grid-area: h;
-    background-color: black;
-}
 
 
-.nav {
-    grid-area: n;
-    background-color: navy;
-}
 
-.content {
-    grid-area: c;
-    background-color: grey;
 
-}
-.header img {
-    width: 50px;
-}
+
+
