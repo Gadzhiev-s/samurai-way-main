@@ -1,20 +1,18 @@
 import React from "react";
-import p from './Profile.module.css'
+import MyPost from "./MyPosts/MyPost";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {MyPostDataType} from "../../redux/state";
+// import {MyPostDataType} from "../../index";
 
-import MyPost from "./Post/MyPost";
 
-// type NavPropsType ={}
-const Content = () => {
+type NavPropsType ={
+    posts:MyPostDataType
+}
+const Profile = (props:NavPropsType) => {
     return (<div>
-        <div className={p.content}>
-            <img src={'https://www.gettyimages.com/gi-resources/images/500px/983703508.jpg'} alt={'фото'}/>
-
-            <div>
-                Ava + description
-                <MyPost name={'My Post'}/>
-            </div>
-        </div>
+        <ProfileInfo/>
+        <MyPost name={'My Post'} myposts={props.posts} />
     </div>);
 }
 
-export default Content
+export default Profile
