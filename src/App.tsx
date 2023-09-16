@@ -3,18 +3,24 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Nav from "./components/NavBar/Nav";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Setting from "./components/Setting/Setting";
-import { StateType} from "./redux/state";
+import Friends from "./components/Friends/Friends";
+import {ActionAcType, StateType} from "./redux/state";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 export type AppProps = {
-    state:StateType
+    state: StateType
+    dispatch: (action: ActionAcType) => void
+    store:any
 }
-const App = (props:AppProps) => {
+
+
+const App = (props: AppProps) => {
+
     return (<BrowserRouter>
             <div className={'app-wrapper'}>
 
@@ -22,11 +28,14 @@ const App = (props:AppProps) => {
                 <Header/>
                 <Nav/>
                 <div className='app-wrapper-content'>
-                    <Route path={'/Dialogs'} render={()=><Dialogs state={props.state}/>}/>
-                    <Route path={'/Profile'} render={()=><Profile posts={props.state.profilePage.myPostData}/>}/>
+                    <Route path={'/Dialogs'} render={() => <DialogsContainer store={props.store} />} />
+                    <Route path={'/Profile'} render={() => <Profile store={props.store} />}/>
+                                                  {/*updateNewPostsText={props.updateNewPostsText} addPosts={props.addPostsCallBack}*/}
+                    {/*<Route path={'/Profile'} render={()=><Profile state={value} addPosts={addPosts}/>}/>*/}
                     <Route path={'/News'} component={News}/>
                     <Route path={'/Music'} component={Music}/>
                     <Route path={'/Setting'} component={Setting}/>
+                    <Route path={'/Friends'} component={Friends}/>
 
                 </div>
 

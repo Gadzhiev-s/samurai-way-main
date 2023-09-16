@@ -5,7 +5,7 @@ import p from './ProfileInfo.module.css'
 const ProfileInfo = () => {
     return (
         <div className={p.content}>
-            <img src={'https://www.gettyimages.com/gi-resources/images/500px/983703508.jpg'} alt={'фото'}/>
+            <img src={'https://www.gettyimages.com/gi-resources/images/500px/983703508.jpg'} alt={'фото'} className={p.radies}/>
             <div className={p.discriptionBlock}>
                 Ava + description
             </div>

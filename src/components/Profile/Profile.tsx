@@ -1,17 +1,19 @@
 import React from "react";
-import MyPost from "./MyPosts/MyPost";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {MyPostDataType} from "../../redux/state";
-// import {MyPostDataType} from "../../index";
+import MyPostContainer from "./MyPosts/MyPostContainer";
+import {StoreType} from "../../redux/state";
 
 
-type NavPropsType ={
-    posts:MyPostDataType
+type ProfileStatePropsType={
+    store:StoreType
+
 }
-const Profile = (props:NavPropsType) => {
+const Profile = (props:ProfileStatePropsType) => {
     return (<div>
         <ProfileInfo/>
-        <MyPost name={'My Post'} myposts={props.posts} />
+        <MyPostContainer store={props.store}
+        // updateNewPostsText={props.updateNewPostsText} addPosts={props.addPosts}
+        />
     </div>);
 }
 

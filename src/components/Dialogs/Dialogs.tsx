@@ -2,28 +2,38 @@ import React from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {StateType} from "../../redux/state";
+import {DialogsType} from "../../redux/state";
 
-// import {DialogType, MessageType} from "../../index";
-// type DialogsPropsType={
-//     dialog:DialogType,
-//     message:MessageType
-// }
-type DialogsStatePropsType={
-    state:StateType
+
+type DialogsStatePropsType = {
+    state: DialogsType
+    sendMessage:()=>void
+    updateNewMessageBody:(e:string)=>void
+
 }
-const Dialogs = (props:DialogsStatePropsType) => {
+const Dialogs = (props: DialogsStatePropsType) => {
+    let newMessageBody = props.state.newMessageBody
+    let onSendMessageClick = () => {
+        props.sendMessage()
+
+    }
+    const onNewMessageChange = (e:any) => {
+       let body =  e.currentTarget.value
+        props.updateNewMessageBody(body)
+    }
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {props.state.dialogsPage.dialogs.map(el =>
-                    <DialogItem name={el.name} id={el.id}/>
+                {props.state.dialogs.map((el, i) =>
+                    <DialogItem key={el.id} name={el.name} id={el.id}/>
                 )}
+                <textarea value={newMessageBody} onChange={onNewMessageChange}></textarea>
+                <button onClick={onSendMessageClick}>send</button>
             </div>
             <div className={s.messages}>
-                {props.state.dialogsPage.messages.map(el =>
-                    <Message message={el.message}/>
+                {props.state.messages.map((el, i) =>
+                    <Message key={el.id} message={el.message}/>
                 )}
             </div>
 
